@@ -83,7 +83,7 @@ GLuint Renderer::createShaderProgram(const char* vertexPath, const char* fragmen
 
 void Renderer::init() {
     // シェーダーの初期化
-    shaderProgram = createShaderProgram("../shader/particle.vert", "../shader/particle.frag");
+    shaderProgram = createShaderProgram("../../shader/particle.vert", "../../shader/particle.frag");
     
     // VAOとVBOの作成
     glGenVertexArrays(1, &vao);
