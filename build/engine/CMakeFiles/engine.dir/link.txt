@@ -1,2 +1,0 @@
-/usr/bin/ar qc libengine.a CMakeFiles/engine.dir/src/particle.cpp.o CMakeFiles/engine.dir/src/material.cpp.o CMakeFiles/engine.dir/src/renderer.cpp.o
-/usr/bin/ranlib libengine.a

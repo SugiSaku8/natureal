@@ -1,9 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"/Users/sugisaku/Developer/natureal/build/cmake_install.cmake",
-		"/Users/sugisaku/Developer/natureal/build/engine/cmake_install.cmake",
-		"/Users/sugisaku/Developer/natureal/build/game/cmake_install.cmake"
-	],
-	"Parallel" : false
-}

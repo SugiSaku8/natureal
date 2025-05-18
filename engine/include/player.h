@@ -11,6 +11,9 @@ public:
     float yaw, pitch;
     GLFWwindow* window;
     float lastMouseX, lastMouseY;
+    glm::vec3 cameraFront;
+    glm::vec3 cameraRight;
+    glm::vec3 worldUp;
 
     Player();
     void init(GLFWwindow* window);
