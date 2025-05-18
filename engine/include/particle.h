@@ -8,8 +8,6 @@ class Particle {
 public:
     glm::vec3 position;
     glm::vec3 velocity;
-    float lifeTime;
-    int state; // 0: solid, 1: fluid
     glm::vec4 color;
 
     Particle();
