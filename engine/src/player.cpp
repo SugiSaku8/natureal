@@ -1,6 +1,16 @@
 #include "player.h"
 
-Player::Player() : position(0.0f), velocity(0.0f), yaw(0.0f), pitch(0.0f), window(nullptr), lastMouseX(0.0f), lastMouseY(0.0f) {}
+Player::Player() : 
+    position(0.0f), 
+    velocity(0.0f), 
+    yaw(0.0f), 
+    pitch(0.0f), 
+    window(nullptr), 
+    lastMouseX(0.0f), 
+    lastMouseY(0.0f),
+    cameraFront(0.0f, 0.0f, -1.0f),
+    cameraRight(1.0f, 0.0f, 0.0f),
+    worldUp(0.0f, 1.0f, 0.0f) {}
 
 void Player::init(GLFWwindow* window) {
     this->window = window;
