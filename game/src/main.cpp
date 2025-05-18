@@ -2,17 +2,13 @@
 #include "game.h"
 #include "world_generator.h"
 #include <GLFW/glfw3.h>
+#include <iostream>
 
-class Game {
-private:
-    Renderer renderer;
-    WorldGenerator worldGen;
-    Material terrain;
-    Camera camera;
-    Player player;
+int main() {
+    try {
+        Game game;
+        game.init();
 
-public:
-    void init() {
         // GLFWの初期化
         if (!glfwInit()) {
             throw std::runtime_error("GLFWの初期化に失敗しました");
@@ -26,20 +22,26 @@ public:
         }
 
         // レンダラーの初期化
+        Renderer renderer;
         renderer.init();
 
         // ワールドの生成
+        WorldGenerator worldGen;
+        Material terrain;
         worldGen.generateWorld(terrain);
-    }
 
-    void update(float deltaTime) {
-        // 物理シミュレーションの更新
-        terrain.update(deltaTime);
-        
-        // プレイヤーの更新
-        player.update(deltaTime);
-        
-        // レンダリング
-        renderer.drawParticles(terrain.particles);
+        // メインループ
+        while (!glfwWindowShouldClose(window)) {
+            float deltaTime = 0.016f; // 60FPSを想定
+            game.update(deltaTime);
+            glfwSwapBuffers(window);
+            glfwPollEvents();
+        }
+
+        glfwTerminate();
+        return 0;
+    } catch (const std::exception& e) {
+        std::cerr << "エラーが発生しました: " << e.what() << std::endl;
+        return 1;
     }
-};
+}
