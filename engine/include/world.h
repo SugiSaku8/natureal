@@ -1,6 +1,8 @@
 #ifndef WORLD_H
 #define WORLD_H
 
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 #include "material.h"
 #include "particle.h"
 #include <random>

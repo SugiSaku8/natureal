@@ -1,8 +1,9 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <glm/glm.hpp>
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
 
 class Player {
 public:
