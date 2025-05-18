@@ -7,6 +7,7 @@
 #include "material.h"
 #include "camera.h"
 #include "player.h"
+#include "world.h"
 #include <GLFW/glfw3.h>
 
 class Game {
@@ -17,8 +18,11 @@ private:
     Material terrain;
     Camera camera;
     Player player;
+    World world;
+    float lastFrame, currentFrame;
 
 public:
+    Game();
     void init();
     void update(float deltaTime);
     GLFWwindow* getWindow() const { return window; }

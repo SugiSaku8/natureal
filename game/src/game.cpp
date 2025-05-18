@@ -1,12 +1,12 @@
 // src/game.cpp
 #include "game.h"
 #include <GLFW/glfw3.h>
+#include <stdexcept>
 #include <glm/glm.hpp>
 
-Game::Game() : camera(glm::vec3(0.0f, 5.0f, 5.0f)) {
+Game::Game() : camera(glm::vec3(0.0f, 5.0f, 5.0f)), lastFrame(0.0f), currentFrame(0.0f) {
     // 初期設定
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-    lastFrame = 0.0f;
 }
 
 void Game::init() {
@@ -34,9 +34,15 @@ void Game::init() {
 
     // プレイヤーの初期化
     player.init(window);
+
+    lastFrame = 0.0f;
 }
 
 void Game::update(float deltaTime) {
+    currentFrame = glfwGetTime();
+    deltaTime = currentFrame - lastFrame;
+    lastFrame = currentFrame;
+
     // 物理シミュレーションの更新
     terrain.update(deltaTime);
     
@@ -45,9 +51,4 @@ void Game::update(float deltaTime) {
     
     // レンダリング
     renderer.drawParticles(terrain.particles);
-    
-    // フレームレートの制御
-    currentFrame = glfwGetTime();
-    deltaTime = currentFrame - lastFrame;
-    lastFrame = currentFrame;
 }
