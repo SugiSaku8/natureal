@@ -12,6 +12,7 @@ class Renderer {
 private:
     GLuint shaderProgram;
     GLuint vbo, vao;
+    GLuint createShaderProgram(const char* vertexPath, const char* fragmentPath);
 
 public:
     void init();
