@@ -1,7 +1,7 @@
 // engine/src/renderer.cpp
-#include "renderer.h"
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include "renderer.h"
 #include <glm/glm.hpp>
 #include <fstream>
 #include <sstream>
