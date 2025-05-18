@@ -41,8 +41,6 @@ void World::generateTerrain(Material& terrain) {
             Particle particle;
             particle.position = glm::vec3(x, height, z);
             particle.velocity = glm::vec3(0.0f);
-            particle.lifeTime = 1.0f;
-            particle.state = 0;
             particle.color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
             terrain.addParticle(particle);
         }
