@@ -7,8 +7,6 @@ void WorldGenerator::generateWorld(Material& terrain) {
         Particle p;
         p.position = glm::vec3(i % 100, 0.0f, i / 100);
         p.velocity = glm::vec3(0.0f);
-        p.lifeTime = 1.0f;
-        p.state = 0;
         p.color = glm::vec4(1.0f);
         terrain.addParticle(p);
     }
