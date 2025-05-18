@@ -6,9 +6,6 @@
 
 int main() {
     try {
-        Game game;
-        game.init();
-
         // GLFWの初期化
         if (!glfwInit()) {
             throw std::runtime_error("GLFWの初期化に失敗しました");
@@ -20,6 +17,20 @@ int main() {
             glfwTerminate();
             throw std::runtime_error("ウィンドウの作成に失敗しました");
         }
+
+        // コンテキストの作成と設定
+        glfwMakeContextCurrent(window);
+        glfwSwapInterval(1); // VSyncを有効化
+
+        // GLEWの初期化
+        if (glewInit() != GLEW_OK) {
+            glfwTerminate();
+            throw std::runtime_error("GLEWの初期化に失敗しました");
+        }
+
+        // ゲームの初期化
+        Game game(window);
+        game.init();
 
         // レンダラーの初期化
         Renderer renderer;

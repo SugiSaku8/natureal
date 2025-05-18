@@ -4,28 +4,12 @@
 #include <stdexcept>
 #include <glm/glm.hpp>
 
-Game::Game() : camera(glm::vec3(0.0f, 5.0f, 5.0f)), lastFrame(0.0f), currentFrame(0.0f) {
-    // 初期設定
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+Game::Game(GLFWwindow* window)
+    : window(window), camera(glm::vec3(0.0f, 5.0f, 5.0f)), lastFrame(0.0f), currentFrame(0.0f) {
+    // 必要なら初期設定
 }
 
 void Game::init() {
-    // GLFWの初期化
-    if (!glfwInit()) {
-        throw std::runtime_error("GLFWの初期化に失敗しました");
-    }
-
-    // ウィンドウの作成
-    window = glfwCreateWindow(1280, 720, "Particle Engine", NULL, NULL);
-    if (!window) {
-        glfwTerminate();
-        throw std::runtime_error("ウィンドウの作成に失敗しました");
-    }
-
-    // コンテキストの作成と設定
-    glfwMakeContextCurrent(window);
-    glfwSwapInterval(1); // VSyncを有効化
-
     // レンダラーの初期化
     renderer.init();
 
