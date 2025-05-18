@@ -65,6 +65,12 @@ GLuint Renderer::createShaderProgram(const char* vertexPath, const char* fragmen
     GLuint program = glCreateProgram();
     glAttachShader(program, vertexShader);
     glAttachShader(program, fragmentShader);
+
+    // attribute indexのバインド
+    glBindAttribLocation(program, 0, "position");
+    glBindAttribLocation(program, 1, "velocity");
+    glBindAttribLocation(program, 2, "color");
+
     glLinkProgram(program);
 
     // リンクエラーチェック
