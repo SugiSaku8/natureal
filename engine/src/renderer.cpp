@@ -16,6 +16,14 @@ GLuint Renderer::createShaderProgram(const char* vertexPath, const char* fragmen
 
     vShaderFile.open(vertexPath);
     fShaderFile.open(fragmentPath);
+    
+    if (!vShaderFile.is_open()) {
+        throw std::runtime_error(std::string("頂点シェーダーファイルを開けません: ") + vertexPath);
+    }
+    if (!fShaderFile.is_open()) {
+        throw std::runtime_error(std::string("フラグメントシェーダーファイルを開けません: ") + fragmentPath);
+    }
+
     std::stringstream vShaderStream, fShaderStream;
     vShaderStream << vShaderFile.rdbuf();
     fShaderStream << fShaderFile.rdbuf();
@@ -32,16 +40,39 @@ GLuint Renderer::createShaderProgram(const char* vertexPath, const char* fragmen
     glShaderSource(vertexShader, 1, &vShaderCode, NULL);
     glCompileShader(vertexShader);
 
+    // コンパイルエラーチェック
+    GLint success;
+    GLchar infoLog[512];
+    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
+    if (!success) {
+        glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
+        throw std::runtime_error(std::string("頂点シェーダーのコンパイルに失敗しました: ") + infoLog);
+    }
+
     // フラグメントシェーダーのコンパイル
     GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fragmentShader, 1, &fShaderCode, NULL);
     glCompileShader(fragmentShader);
+
+    // コンパイルエラーチェック
+    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
+    if (!success) {
+        glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
+        throw std::runtime_error(std::string("フラグメントシェーダーのコンパイルに失敗しました: ") + infoLog);
+    }
 
     // シェーダープログラムの作成
     GLuint program = glCreateProgram();
     glAttachShader(program, vertexShader);
     glAttachShader(program, fragmentShader);
     glLinkProgram(program);
+
+    // リンクエラーチェック
+    glGetProgramiv(program, GL_LINK_STATUS, &success);
+    if (!success) {
+        glGetProgramInfoLog(program, 512, NULL, infoLog);
+        throw std::runtime_error(std::string("シェーダープログラムのリンクに失敗しました: ") + infoLog);
+    }
 
     // シェーダーの削除
     glDeleteShader(vertexShader);

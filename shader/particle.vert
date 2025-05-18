@@ -1,14 +1,16 @@
 // shaders/particle.vert
-#version 330 core
-layout (location = 0) in vec3 aPos;
-layout (location = 1) in vec4 aColor;
+#version 120
 
-out vec4 particleColor;
+attribute vec3 position;
+attribute vec3 velocity;
+attribute vec4 color;
+
+varying vec4 particleColor;
 
 void main() {
-    gl_Position = vec4(aPos, 1.0);
-    particleColor = aColor;
+    gl_Position = gl_ModelViewProjectionMatrix * vec4(position, 1.0);
     gl_PointSize = 5.0;
+    particleColor = color;
 }
 
 // shaders/particle.frag
