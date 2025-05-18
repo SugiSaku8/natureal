@@ -11,6 +11,7 @@
 
 class Game {
 private:
+    GLFWwindow* window;
     Renderer renderer;
     WorldGenerator worldGen;
     Material terrain;
@@ -20,6 +21,7 @@ private:
 public:
     void init();
     void update(float deltaTime);
+    GLFWwindow* getWindow() const { return window; }
 };
 
 #endif // GAME_H
