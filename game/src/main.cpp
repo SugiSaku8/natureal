@@ -31,10 +31,10 @@ int main() {
         worldGen.generateWorld(terrain);
 
         // メインループ
-        while (!glfwWindowShouldClose(window)) {
+        while (!glfwWindowShouldClose(game.getWindow())) {
             float deltaTime = 0.016f; // 60FPSを想定
             game.update(deltaTime);
-            glfwSwapBuffers(window);
+            glfwSwapBuffers(game.getWindow());
             glfwPollEvents();
         }
 
