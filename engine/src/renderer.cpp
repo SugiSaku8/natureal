@@ -52,14 +52,37 @@ GLuint Renderer::createShaderProgram(const char* vertexPath, const char* fragmen
 
 void Renderer::init() {
     // シェーダーの初期化
-    shaderProgram = createShaderProgram("shaders/particle.vert", "shaders/particle.frag");
+    shaderProgram = createShaderProgram("../shader/particle.vert", "../shader/particle.frag");
     
     // VAOとVBOの作成
     glGenVertexArrays(1, &vao);
     glGenBuffers(1, &vbo);
+    
+    // VAOの設定
+    glBindVertexArray(vao);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    
+    // 頂点属性の設定
+    // position
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, position));
+    glEnableVertexAttribArray(0);
+    
+    // velocity
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, velocity));
+    glEnableVertexAttribArray(1);
+    
+    // color
+    glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, color));
+    glEnableVertexAttribArray(2);
+    
+    // バッファのバインドを解除
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
 }
 
 void Renderer::drawParticles(const std::vector<Particle>& particles) {
+    if (particles.empty()) return;
+    
     glUseProgram(shaderProgram);
     glBindVertexArray(vao);
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -71,4 +94,9 @@ void Renderer::drawParticles(const std::vector<Particle>& particles) {
         GL_STREAM_DRAW);
     
     glDrawArrays(GL_POINTS, 0, particles.size());
+    
+    // バッファのバインドを解除
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glUseProgram(0);
 }

@@ -24,10 +24,17 @@ int main() {
         glfwSwapInterval(1); // VSyncを有効化
 
         // GLEWの初期化
-        if (glewInit() != GLEW_OK) {
+        glewExperimental = GL_TRUE; // コアプロファイルで必要
+        GLenum err = glewInit();
+        if (err != GLEW_OK) {
             glfwTerminate();
-            throw std::runtime_error("GLEWの初期化に失敗しました");
+            throw std::runtime_error(std::string("GLEWの初期化に失敗しました: ") + 
+                                   reinterpret_cast<const char*>(glewGetErrorString(err)));
         }
+
+        // OpenGLのバージョン確認
+        std::cout << "OpenGL Version: " << glGetString(GL_VERSION) << std::endl;
+        std::cout << "GLSL Version: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
 
         // ゲームの初期化
         Game game(window);
@@ -43,10 +50,10 @@ int main() {
         worldGen.generateWorld(terrain);
 
         // メインループ
-        while (!glfwWindowShouldClose(game.getWindow())) {
+        while (!glfwWindowShouldClose(window)) {
             float deltaTime = 0.016f; // 60FPSを想定
             game.update(deltaTime);
-            glfwSwapBuffers(game.getWindow());
+            glfwSwapBuffers(window);
             glfwPollEvents();
         }
 
