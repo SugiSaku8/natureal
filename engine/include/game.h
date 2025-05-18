@@ -2,8 +2,11 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "engine/include/renderer.h"
-#include "engine/include/world_generator.h"
+#include "renderer.h"
+#include "world_generator.h"
+#include "material.h"
+#include "camera.h"
+#include "player.h"
 #include <GLFW/glfw3.h>
 
 class Game {
