@@ -1,4 +1,3 @@
-
 // engine/include/renderer.h
 #ifndef RENDERER_H
 #define RENDERER_H
@@ -6,6 +5,8 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
+#include <vector>
+#include "particle.h"
 
 class Renderer {
 private:

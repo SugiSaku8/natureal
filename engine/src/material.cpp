@@ -1,21 +1,12 @@
-// engine/src/material.cpp
 #include "material.h"
 #include <vector>
 
-class Material {
-public:
-    std::vector<Particle> particles;
-    glm::vec3 bounds;
-    int materialType;
-    std::string atomicStructure;
+void Material::addParticle(const Particle& particle) {
+    particles.push_back(particle);
+}
 
-    void addParticle(const Particle& particle) {
-        particles.push_back(particle);
+void Material::update(float deltaTime) {
+    for (auto& particle : particles) {
+        particle.update(deltaTime);
     }
-
-    void update(float deltaTime) {
-        for (auto& particle : particles) {
-            particle.update(deltaTime);
-        }
-    }
-};
+} 
