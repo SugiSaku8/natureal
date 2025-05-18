@@ -15,6 +15,8 @@ add_library(engine STATIC
     src/particle.cpp
     src/material.cpp
     src/renderer.cpp
+    src/world_generator.cpp
+    src/camera.cpp
 )
 
 # インクルードディレクトリの設定
