@@ -1,7 +1,7 @@
 #include "core/Engine.hpp"
-#include "renderer/Renderer.hpp"
-#include "physics/PhysicsWorld.hpp"
-#include "world/WorldGenerator.hpp"
+// #include "renderer/Renderer.hpp"
+// #include "physics/PhysicsWorld.hpp"
+// #include "world/WorldGenerator.hpp"
 #include <chrono>
 
 namespace Natureal {
@@ -19,21 +19,21 @@ Engine::~Engine() {
 
 bool Engine::initialize(const std::string& configPath) {
     // Initialize core systems
-    m_renderer = std::make_unique<Renderer>();
-    m_physics = std::make_unique<PhysicsWorld>();
-    m_worldGen = std::make_unique<WorldGenerator>();
+    // m_renderer = std::make_unique<Renderer>();
+    // m_physics = std::make_unique<PhysicsWorld>();
+    // m_worldGen = std::make_unique<WorldGenerator>();
 
-    if (!m_renderer->initialize()) {
-        return false;
-    }
+    // if (!m_renderer->initialize()) {
+    //     return false;
+    // }
 
-    if (!m_physics->initialize()) {
-        return false;
-    }
+    // if (!m_physics->initialize()) {
+    //     return false;
+    // }
 
-    if (!m_worldGen->initialize()) {
-        return false;
-    }
+    // if (!m_worldGen->initialize()) {
+    //     return false;
+    // }
 
     m_isRunning = true;
     return true;
@@ -50,9 +50,9 @@ void Engine::run() {
 
 void Engine::shutdown() {
     m_isRunning = false;
-    m_renderer.reset();
-    m_physics.reset();
-    m_worldGen.reset();
+    // m_renderer.reset();
+    // m_physics.reset();
+    // m_worldGen.reset();
 }
 
 void Engine::processInput() {
@@ -61,18 +61,18 @@ void Engine::processInput() {
 
 void Engine::update() {
     // Update physics
-    m_physics->update(m_deltaTime);
+    // m_physics->update(m_deltaTime);
 
     // Update world
     // TODO: Get player position
-    glm::vec3 playerPos(0.0f);
-    m_worldGen->update(playerPos);
+    // glm::vec3 playerPos(0.0f);
+    // m_worldGen->update(playerPos);
 }
 
 void Engine::render() {
-    m_renderer->beginFrame();
+    // m_renderer->beginFrame();
     // TODO: Render scene
-    m_renderer->endFrame();
+    // m_renderer->endFrame();
 }
 
 void Engine::calculateDeltaTime() {
