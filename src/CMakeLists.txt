@@ -1,6 +1,9 @@
 # Add source files
 set(SOURCES
     core/Engine.cpp
+    renderer/Renderer.cpp
+    physics/PhysicsWorld.cpp
+    world/WorldGenerator.cpp
     utils/Logger.cpp
 )
 

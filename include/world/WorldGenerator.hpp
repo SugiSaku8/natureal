@@ -55,6 +55,10 @@ private:
     float calculateNoise(float x, float z) const;
     void generateChunk(const glm::ivec3& chunkPos);
     void updateChunks(const glm::vec3& playerPosition);
+
+    // Add Impl for pImpl idiom
+    class Impl;
+    std::unique_ptr<Impl> m_impl;
 };
 
 } // namespace Natureal 

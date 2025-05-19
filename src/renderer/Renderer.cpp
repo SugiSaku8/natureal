@@ -2,8 +2,9 @@
 #include <memory>
 
 namespace Natureal {
-Renderer::Renderer() {}
-Renderer::~Renderer() {}
+class Renderer::Impl {};
+Renderer::Renderer() : m_impl(std::make_unique<Impl>()) {}
+Renderer::~Renderer() = default;
 bool Renderer::initialize() { return true; }
 void Renderer::beginFrame() {}
 void Renderer::endFrame() {}
