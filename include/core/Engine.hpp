@@ -6,9 +6,9 @@
 
 namespace Natureal {
 
-class Renderer;
-class PhysicsWorld;
-class WorldGenerator;
+// class Renderer;
+// class PhysicsWorld;
+// class WorldGenerator;
 class ResourceManager;
 
 class Engine {
@@ -27,9 +27,9 @@ public:
 
 private:
     // Core systems
-    std::unique_ptr<Renderer> m_renderer;
-    std::unique_ptr<PhysicsWorld> m_physics;
-    std::unique_ptr<WorldGenerator> m_worldGen;
+    // std::unique_ptr<Renderer> m_renderer;
+    // std::unique_ptr<PhysicsWorld> m_physics;
+    // std::unique_ptr<WorldGenerator> m_worldGen;
     // std::unique_ptr<ResourceManager> m_resources; // Removed to fix build error
 
     // Engine state
