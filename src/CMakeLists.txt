@@ -1,9 +1,6 @@
 # Add source files
 set(SOURCES
     core/Engine.cpp
-    renderer/Renderer.cpp
-    physics/PhysicsWorld.cpp
-    world/WorldGenerator.cpp
     utils/Logger.cpp
 )
 
@@ -14,7 +11,6 @@ add_library(Natureal STATIC ${SOURCES})
 target_include_directories(Natureal
     PUBLIC
         ${CMAKE_SOURCE_DIR}/include
-        /opt/homebrew/include
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}
 )

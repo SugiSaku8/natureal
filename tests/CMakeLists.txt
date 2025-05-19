@@ -5,8 +5,8 @@ add_executable(NaturealTests EngineTest.cpp)
 target_link_libraries(NaturealTests
     PRIVATE
         Natureal
-        gtest
-        gtest_main
+        GTest::gtest
+        GTest::gtest_main
 )
 
 # Add test command
