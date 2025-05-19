@@ -49,6 +49,10 @@ private:
     std::vector<std::unique_ptr<Chunk>> m_activeChunks;
     glm::ivec3 m_currentChunk;
 
+    // PIMPL
+    class Impl;
+    std::unique_ptr<Impl> m_impl;
+
     // Internal methods
     void generateNoiseLayers();
     float calculateNoise(float x, float z) const;
