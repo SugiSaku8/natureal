@@ -21,7 +21,7 @@ target_include_directories(Natureal
 # Link dependencies
 target_link_libraries(Natureal
     PUBLIC
-        glm
+        glm::glm
         Vulkan::Vulkan
     PRIVATE
         ${CMAKE_DL_LIBS}

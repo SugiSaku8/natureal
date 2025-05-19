@@ -12,6 +12,9 @@ if(APPLE)
     set(METAL_FOUND TRUE)
 endif()
 
+# Find GLM
+find_package(glm REQUIRED)
+
 # Add subdirectories
 add_subdirectory(src)
 add_subdirectory(tests)
