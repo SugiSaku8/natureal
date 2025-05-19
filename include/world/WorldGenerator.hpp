@@ -3,12 +3,11 @@
 #include <glm/glm.hpp>
 #include <vector>
 #include <memory>
+#include "world/Chunk.hpp"
+#include "world/WaterSimulation.hpp"
+#include "world/FireSimulation.hpp"
 
 namespace Natureal {
-
-class Chunk;
-class WaterSimulation;
-class FireSimulation;
 
 class WorldGenerator {
 public:

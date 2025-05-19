@@ -12,13 +12,13 @@ public:
 
     bool initialize() {
         // Initialize Metal device
-        m_device = MTL::CreateSystemDefaultDevice();
+        m_device = MTLCreateSystemDefaultDevice();
         if (!m_device) {
             return false;
         }
 
         // Create command queue
-        m_commandQueue = m_device->newCommandQueue();
+        m_commandQueue = [m_device newCommandQueue];
         if (!m_commandQueue) {
             return false;
         }
@@ -28,19 +28,19 @@ public:
 
     void beginFrame() {
         // Create command buffer
-        m_commandBuffer = m_commandQueue->commandBuffer();
+        m_commandBuffer = [m_commandQueue commandBuffer];
     }
 
     void endFrame() {
         // Commit command buffer
-        m_commandBuffer->commit();
-        m_commandBuffer = nullptr;
+        [m_commandBuffer commit];
+        m_commandBuffer = nil;
     }
 
 private:
-    MTL::Device* m_device = nullptr;
-    MTL::CommandQueue* m_commandQueue = nullptr;
-    MTL::CommandBuffer* m_commandBuffer = nullptr;
+    id<MTLDevice> m_device = nil;
+    id<MTLCommandQueue> m_commandQueue = nil;
+    id<MTLCommandBuffer> m_commandBuffer = nil;
 };
 
 Renderer::Renderer()
