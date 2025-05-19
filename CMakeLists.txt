@@ -1,31 +1,36 @@
-cmake_minimum_required(VERSION 3.10)
-project(ParticleEngine)
+cmake_minimum_required(VERSION 3.20)
+project(Natureal VERSION 0.1.0 LANGUAGES CXX)
 
-# Homebrewのパスを設定
-set(CMAKE_PREFIX_PATH 
-    "/opt/homebrew"
-    "/opt/homebrew/opt/glfw"
-    "/opt/homebrew/lib/cmake"
-)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
-# GLFWのパスを明示的に設定
-set(GLFW_ROOT "/opt/homebrew/opt/glfw")
+# Find required packages
+find_package(Vulkan REQUIRED)
+if(APPLE)
+    find_package(Metal REQUIRED)
+endif()
 
-# 必要なパッケージの検索
-find_package(GLEW REQUIRED)
-find_package(glfw3 3.4 REQUIRED)
-find_package(glm REQUIRED)
-find_package(spdlog REQUIRED)
+# Add subdirectories
+add_subdirectory(src)
+add_subdirectory(tests)
 
-# エンジン部分
-add_subdirectory(engine)
+# Set output directories
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
-# ゲーム部分
-add_subdirectory(game)
+# Enable testing
+enable_testing()
 
-# インストールターゲットの追加
-install(TARGETS engine particle_game
-        DESTINATION bin)
+# Set compiler flags
+if(MSVC)
+    add_compile_options(/W4 /WX)
+else()
+    add_compile_options(-Wall -Wextra -Wpedantic -Werror)
+endif()
 
-install(DIRECTORY shaders/
-        DESTINATION .)
+# Set Metal specific flags for Apple platforms
+if(APPLE)
+    add_compile_definitions(USE_METAL)
+endif() 
