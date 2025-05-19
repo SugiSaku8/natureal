@@ -1,9 +1,6 @@
 # Add source files
 set(SOURCES
     core/Engine.cpp
-    renderer/Renderer.cpp
-    physics/PhysicsWorld.cpp
-    world/WorldGenerator.cpp
     utils/Logger.cpp
 )
 
@@ -31,8 +28,8 @@ target_link_libraries(Natureal
 if(APPLE)
     target_link_libraries(Natureal
         PRIVATE
-            "-framework Metal"
-            "-framework MetalKit"
-            "-framework Cocoa"
+            ${METAL_LIBRARY}
+            ${METALKIT_LIBRARY}
+            ${COCOA_LIBRARY}
     )
 endif() 

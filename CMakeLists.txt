@@ -7,6 +7,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Find required packages
 find_package(Vulkan REQUIRED)
+find_package(GTest REQUIRED)
 
 # Add subdirectories
 add_subdirectory(src)
