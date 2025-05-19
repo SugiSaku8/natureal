@@ -7,8 +7,8 @@ set(SOURCES
     utils/Logger.cpp
 )
 
-# Create the main library
-add_library(Natureal ${SOURCES})
+# Create the library
+add_library(Natureal STATIC ${SOURCES})
 
 # Set include directories
 target_include_directories(Natureal
@@ -22,6 +22,7 @@ target_include_directories(Natureal
 # Link dependencies
 target_link_libraries(Natureal
     PUBLIC
+        glm
         Vulkan::Vulkan
     PRIVATE
         ${CMAKE_DL_LIBS}
@@ -30,9 +31,14 @@ target_link_libraries(Natureal
 # Add Metal support for Apple platforms
 if(APPLE)
     target_link_libraries(Natureal
-        PRIVATE
+        PUBLIC
             ${METAL_LIBRARY}
             ${METALKIT_LIBRARY}
             ${COCOA_LIBRARY}
     )
-endif() 
+endif()
+
+# Set output directory
+set_target_properties(Natureal PROPERTIES
+    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib
+) 
