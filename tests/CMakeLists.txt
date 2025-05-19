@@ -7,8 +7,8 @@ add_executable(NaturealTests
 target_link_libraries(NaturealTests
     PRIVATE
         Natureal
-        gtest
-        gtest_main
+        GTest::gtest
+        GTest::gtest_main
 )
 
 # Add tests
