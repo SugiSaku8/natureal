@@ -9,6 +9,9 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 find_package(Vulkan REQUIRED)
 find_package(GTest REQUIRED)
 
+# Add GLM
+include_directories(/opt/homebrew/include)
+
 # Add subdirectories
 add_subdirectory(src)
 add_subdirectory(tests)
