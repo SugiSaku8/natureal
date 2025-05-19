@@ -1,8 +1,7 @@
 # Add source files
 set(SOURCES
     core/Engine.cpp
-    core/ResourceManager.cpp
-    renderer/Renderer.mm
+    renderer/Renderer.cpp
     physics/PhysicsWorld.cpp
     world/WorldGenerator.cpp
     utils/Logger.cpp
@@ -22,7 +21,7 @@ target_include_directories(Natureal
 # Link dependencies
 target_link_libraries(Natureal
     PUBLIC
-        glm::glm
+        glm
         Vulkan::Vulkan
     PRIVATE
         ${CMAKE_DL_LIBS}

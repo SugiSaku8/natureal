@@ -3,11 +3,12 @@
 #include <glm/glm.hpp>
 #include <vector>
 #include <memory>
-#include "world/Chunk.hpp"
-#include "world/WaterSimulation.hpp"
-#include "world/FireSimulation.hpp"
 
 namespace Natureal {
+
+class Chunk;
+class WaterSimulation;
+class FireSimulation;
 
 class WorldGenerator {
 public:
@@ -48,10 +49,6 @@ private:
     // Chunk management
     std::vector<std::unique_ptr<Chunk>> m_activeChunks;
     glm::ivec3 m_currentChunk;
-
-    // PIMPL
-    class Impl;
-    std::unique_ptr<Impl> m_impl;
 
     // Internal methods
     void generateNoiseLayers();

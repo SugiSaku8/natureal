@@ -8,12 +8,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # Find required packages
 find_package(Vulkan REQUIRED)
 if(APPLE)
-    # Metal is part of the system framework on macOS
-    set(METAL_FOUND TRUE)
+    find_package(Metal REQUIRED)
 endif()
-
-# Find GLM
-find_package(glm REQUIRED)
 
 # Add subdirectories
 add_subdirectory(src)
