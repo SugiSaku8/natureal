@@ -8,7 +8,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # Find required packages
 find_package(Vulkan REQUIRED)
 if(APPLE)
-    find_package(Metal REQUIRED)
+    # Metal is part of the system framework on macOS
+    set(METAL_FOUND TRUE)
 endif()
 
 # Add subdirectories
