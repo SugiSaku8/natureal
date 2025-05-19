@@ -30,7 +30,7 @@ private:
     std::unique_ptr<Renderer> m_renderer;
     std::unique_ptr<PhysicsWorld> m_physics;
     std::unique_ptr<WorldGenerator> m_worldGen;
-    std::unique_ptr<ResourceManager> m_resources;
+    // std::unique_ptr<ResourceManager> m_resources; // Removed to fix build error
 
     // Engine state
     bool m_isRunning;
