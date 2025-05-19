@@ -11,6 +11,7 @@ add_library(Natureal STATIC ${SOURCES})
 target_include_directories(Natureal
     PUBLIC
         ${CMAKE_SOURCE_DIR}/include
+        /opt/homebrew/include
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}
 )
@@ -18,7 +19,6 @@ target_include_directories(Natureal
 # Link dependencies
 target_link_libraries(Natureal
     PUBLIC
-        glm
         Vulkan::Vulkan
     PRIVATE
         ${CMAKE_DL_LIBS}
