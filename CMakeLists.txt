@@ -7,9 +7,6 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Find required packages
 find_package(Vulkan REQUIRED)
-if(APPLE)
-    find_package(Metal REQUIRED)
-endif()
 
 # Add subdirectories
 add_subdirectory(src)
@@ -33,4 +30,7 @@ endif()
 # Set Metal specific flags for Apple platforms
 if(APPLE)
     add_compile_definitions(USE_METAL)
+    find_library(METAL_LIBRARY Metal REQUIRED)
+    find_library(METALKIT_LIBRARY MetalKit REQUIRED)
+    find_library(COCOA_LIBRARY Cocoa REQUIRED)
 endif() 
