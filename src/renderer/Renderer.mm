@@ -1,6 +1,7 @@
+// This file will be renamed to Renderer.mm
 #include "renderer/Renderer.hpp"
-#include <Metal/Metal.hpp>
-#include <MetalKit/MetalKit.hpp>
+#include <Metal/Metal.h>
+#include <MetalKit/MetalKit.h>
 
 namespace Natureal {
 
